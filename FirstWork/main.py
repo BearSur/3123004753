@@ -23,20 +23,30 @@ def cosine_similarity(text1, text2):
     return dot / (norm1 * norm2)
 
 def main():
-    # 这里直接指定文件名，就像 C++ 里写死路径一样
-    orig_path = "orig.txt"
-    copy_path = "orig_add.txt"
-    ans_path = "ans.txt"
+    orig_path = "orig.txt"   # 原文
+    files_to_check = [       # 要检测的文件列表
+        "orig_add.txt",
+        "orig_del.txt",
+        "orig_0.8_dis_1.txt",
+        "orig_0.8_dis_10.txt",
+        "orig_0.8_dis_15.txt",
+    ]
+    ans_path = "ans.txt"     # 输出结果文件
 
     with open(orig_path, "r", encoding="utf-8") as f:
-        text1 = f.read().strip()
-    with open(copy_path, "r", encoding="utf-8") as f:
-        text2 = f.read().strip()
+        orig_text = f.read().strip()
 
-    similarity = cosine_similarity(text1, text2)
+    results = []
+    for file in files_to_check:
+        with open(file, "r", encoding="utf-8") as f:
+            text = f.read().strip()
+        sim = cosine_similarity(orig_text, text)
+        results.append((file, sim))
 
+    # 输出到文件：文件名 + 重复率
     with open(ans_path, "w", encoding="utf-8") as f:
-        f.write(f"{similarity:.2f}")
+        for file, sim in results:
+            f.write(f"{file}: {sim:.2f}\n")
 
 if __name__ == "__main__":
     main()
