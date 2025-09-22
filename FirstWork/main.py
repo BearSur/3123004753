@@ -23,7 +23,6 @@ def cosine_similarity(text1, text2):
     return dot / (norm1 * norm2)
 
 def main():
-    # 这里直接指定文件名，就像 C++ 里写死路径一样
     orig_path = "orig.txt"
     copy_path = "orig_add.txt"
     ans_path = "ans.txt"
