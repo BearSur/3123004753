@@ -1,1 +1,5 @@
-1.00
+orig_add.txt: 1.00
+orig_del.txt: 0.84
+orig_0.8_dis_1.txt: 0.84
+orig_0.8_dis_10.txt: 0.88
+orig_0.8_dis_15.txt: 0.92

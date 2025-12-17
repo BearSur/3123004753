@@ -1,8 +1,9 @@
 import math
 from collections import Counter
 
+
 def cosine_similarity(text1, text2):
-    """计算两个文本的余弦相似度"""
+    """Calculate cosine similarity between two texts."""
     words1 = list(text1)
     words2 = list(text2)
 
@@ -22,16 +23,17 @@ def cosine_similarity(text1, text2):
         return 0.0
     return dot / (norm1 * norm2)
 
+
 def main():
-    orig_path = "orig.txt"   # 原文
-    files_to_check = [       # 要检测的文件列表
+    orig_path = "orig.txt"
+    files_to_check = [
         "orig_add.txt",
         "orig_del.txt",
         "orig_0.8_dis_1.txt",
         "orig_0.8_dis_10.txt",
         "orig_0.8_dis_15.txt",
     ]
-    ans_path = "ans.txt"     # 输出结果文件
+    ans_path = "ans.txt"
 
     with open(orig_path, "r", encoding="utf-8") as f:
         orig_text = f.read().strip()
@@ -43,10 +45,10 @@ def main():
         sim = cosine_similarity(orig_text, text)
         results.append((file, sim))
 
-    # 输出到文件：文件名 + 重复率
     with open(ans_path, "w", encoding="utf-8") as f:
         for file, sim in results:
             f.write(f"{file}: {sim:.2f}\n")
+
 
 if __name__ == "__main__":
     main()
